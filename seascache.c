@@ -1,6 +1,6 @@
 /*
   +----------------------------------------------------------------------+
-  | PHP Version 7                                                        |
+  | SeasCache                                                            |
   +----------------------------------------------------------------------+
   | Copyright (c) 1997-2018 The PHP Group                                |
   +----------------------------------------------------------------------+
@@ -71,7 +71,12 @@ PHP_FUNCTION(confirm_seascache_compiled)
    function definition, where the functions purpose is also documented. Please
    follow this convention for the convenience of others editing your code.
 */
-
+PHP_FUNCTION(ping)
+{
+    zend_string *strg;
+	strg = strpprintf(0, "pong");
+	RETURN_STR(strg);
+}
 
 /* {{{ php_seascache_init_globals
  */
@@ -146,6 +151,7 @@ PHP_MINFO_FUNCTION(seascache)
  * Every user visible function must have an entry in seascache_functions[].
  */
 const zend_function_entry seascache_functions[] = {
+    PHP_FE(ping, NULL)
 	PHP_FE(confirm_seascache_compiled,	NULL)		/* For testing, remove later. */
 	PHP_FE_END	/* Must be the last line in seascache_functions[] */
 };
